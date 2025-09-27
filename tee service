@@ -1,0 +1,23 @@
+cat << 'EOF' | sudo tee /etc/systemd/system/vaarna-assari.service
+[Unit]
+Description=Vaarna Voice Assistant (RPi + Jabra)
+After=network-online.target sound.target pulseaudio.service
+Wants=network-online.target
+
+[Service]
+User=pi
+Environment=OPENAI_API_KEY=%EOPENAI_API_KEY%
+EnvironmentFile=-/home/pi/.bashrc
+WorkingDirectory=/home/pi
+ExecStart=/usr/bin/python3 /home/pi/assari_vaarna.py
+Restart=on-failure
+RestartSec=2
+# anna pääsy pulseaudion socketiin käyttäjän sessiossa
+# tarvittaessa lisää: ExecStartPre=/usr/bin/pulseaudio --start
+
+[Install]
+WantedBy=default.target
+EOF
+
+sudo systemctl daemon-reload
+sudo systemctl enable --now vaarna-assari.service
