@@ -1,0 +1,2 @@
+echo 'export OPENAI_API_KEY="PASTA_API_KEY_TAHAN"' >> ~/.bashrc
+source ~/.bashrc
