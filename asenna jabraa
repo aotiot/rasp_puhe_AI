@@ -1,0 +1,7 @@
+pulseaudio --check || pulseaudio --start
+
+pactl list short sinks
+pactl list short sources
+# korvaa alla omilla nimilläsi:
+pactl set-default-sink   <jabra_sink_nimi>
+pactl set-default-source <jabra_source_nimi>
