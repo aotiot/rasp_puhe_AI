@@ -1,0 +1,8 @@
+sudo apt update && sudo apt -y upgrade
+
+# ääni, bt/alsa/pulse-työkalut, piper (tts)
+sudo apt -y install pulseaudio pavucontrol sox libsox-fmt-all \
+  portaudio19-dev python3-pip alsa-utils piper
+
+# python-kirjastot
+pip3 install --upgrade sounddevice webrtcvad vosk openai
